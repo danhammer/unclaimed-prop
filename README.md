@@ -1,6 +1,13 @@
-unclaimed-prop
-==============
+## unclaimed-prop
+
 Script to download unclaimed property data from https://ucpi.sco.ca.gov/ucp/Default.aspx
 
-example queries:
-- python scraping.py P 1 40000
+For now, go into the `scrape.py` buffer and run the `process_data()` function with one, required argument -- specifically, an integer of values to process.
+
+```python
+>>> process_data(1000)
+uploading 17338524
+uploading 1233362
+uploading 13049574
+...
+```
