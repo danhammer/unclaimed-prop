@@ -21,7 +21,7 @@ def grab_cash(soup):
         return float(cash)
     except ValueError:
         print cash
-        return 'bad value'
+        return None
 
 
 def grab_coords(soup):
@@ -71,9 +71,10 @@ def compile_data(property_id, soup):
     vals = [property_id, lat, lon, name, reporter, property_type, value]
 
     # return a dictionary with values ready for cartodb insert, as
-    # long as the coordinates aren't (0,0)
+    # long as the coordinates aren't (0,0) and the cash value is a
+    # reasonable number.
     header = '(property_id,lat,lon,name,reporter,type,value)'
-    if all(v == 0 for v in [lat, lon]):
+    if all(v == 0 for v in [lat, lon]) or value == None:
         val_str = None
     else:
         val_str = '(' + ','.join(str(x) for x in vals) + ')'
