@@ -1,6 +1,0 @@
-PythonStreaming
-Amazon Web Services
-
-QUERIES
-
-python scraping.py P 1 40000

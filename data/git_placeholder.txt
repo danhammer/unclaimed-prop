@@ -1,0 +1,1 @@
+data directory will hold downloaded CSVs, which are not synced.

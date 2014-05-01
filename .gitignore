@@ -31,10 +31,8 @@
 *.mtc
 *.mtc0
 .RData
-*.csv
 *.zip
 *.7z
-data/
 *.tar.gz
 *~
 *#
