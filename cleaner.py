@@ -15,12 +15,16 @@ def _clean_entry(soup, key_name):
 
 
 def grab_cash(soup):
-    """Accepts the soup object and returns a cash float"""
+    """Accepts the soup object and returns a cash float.  A common
+    value is `0.00 (See " * " below)`.  Entries with this value are
+    assigned `None` and are not included in the data table.
+
+    """
     cash = _clean_entry(soup, 'ctl00_ContentPlaceHolder1_CashReportData')
+    cash = cleaned.replace(",","")
     try:
         return float(cash)
     except ValueError:
-        print cash
         return None
 
 
