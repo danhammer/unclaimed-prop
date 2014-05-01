@@ -98,6 +98,8 @@ def carto_entry(property_id):
     html = urlopen(base_url + idx).read()
     soup = BeautifulSoup(html)
     
+    # Return nonetypes if there is no data associated with the
+    # supplied property ID.
     if soup.text.find('YOUR SESSION HAS EXPIRED') > 0:
         return {'header' : None, 'values' : None}
     else:
