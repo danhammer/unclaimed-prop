@@ -36,8 +36,8 @@ def getProperties(sleep = 0, maxQueries = 2001):
 	propertyList = list(header)
 	errorCount = 0
 	i = 1
-	while (errorCount <= 100 and i <= maxQueries):
-		randID = randint(1, 1000000) # right now it doesn't seem like it goes past 10m. maybe spottier after 1m?
+	while (errorCount <= 10000 and i <= maxQueries):
+		randID = randint(1, 200000) # right now it doesn't seem like it goes past 10m. maybe spottier after 1m?
 		# https://ucpi.sco.ca.gov/ucp/PropertyDetails.aspx?propertyID=001331061
 		# 9 digit numbers, needs to be padded with 0s
 	
@@ -115,7 +115,7 @@ def getGeog(address):
 	return list((place, lat, lng))
 	
 def outputCSV(mylist, name): 
-	writer=csv.writer(file("data/" + name + '.csv','wb'),dialect='excel')
+	writer=csv.writer(file("data/random/" + name + '.csv','wb'),dialect='excel')
 	writer.writerows(mylist)
 	print("Wrote " + name + '.csv')
       

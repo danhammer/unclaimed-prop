@@ -168,7 +168,7 @@ def fixList(tagstrList):
 	return(fixed.strip())
 	
 def outputCSV(mylist, name): 
-	writer=csv.writer(file("data/" + name + '.csv','wb'),dialect='excel')
+	writer=csv.writer(file("data/sequential/" + name + '.csv','wb'),dialect='excel')
 	writer.writerows(mylist)
 	print("Wrote " + name + '.csv')
       
