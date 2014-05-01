@@ -9,7 +9,10 @@ def _clean_entry(soup, key_name):
 
     """
     entry = soup.find(id = key_name)
-    string = entry.text.strip(' $\n\r\t')
+    try:
+        string = entry.text.strip(' $\n\r\t')
+    except AttributeError: 
+        string = ' '
     cleaned = re.sub(r'\s+', ' ', string)
     return cleaned.replace("'","")
 
