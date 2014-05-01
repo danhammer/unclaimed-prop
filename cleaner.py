@@ -21,7 +21,7 @@ def grab_cash(soup):
 
     """
     cash = _clean_entry(soup, 'ctl00_ContentPlaceHolder1_CashReportData')
-    cash = cleaned.replace(",","")
+    cash = cash.replace(",","")
     try:
         return float(cash)
     except ValueError:
