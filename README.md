@@ -11,3 +11,9 @@ uploading 1233362
 uploading 13049574
 ...
 ```
+
+OR run the following command from the command line:
+
+```bash
+python scrape.py -n 100
+```

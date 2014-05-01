@@ -1,3 +1,5 @@
+import sys
+import getopt
 import multiprocessing
 import pickle
 from random import sample
@@ -31,3 +33,16 @@ def process_data(n):
     cpu = multiprocessing.cpu_count()
     pool = multiprocessing.Pool(processes=cpu)
     pool.map(upload, create_list(n))
+
+def main():
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], "n:")
+    except getopt.GetoptError as err:
+        print str(err) 
+
+    for opt, arg in opts:
+        if opt in ('-n'):
+            process_data(int(arg))
+
+if __name__ == "__main__":
+   main()
