@@ -34,7 +34,6 @@ def getProperties(sleep = 0, maxQueries = 2001):
 	print("Getting Properties...")
 	header = [["propID", "ownerName", "ownerAdd", "propType", "cashRep", "sharesRep", "nameSec", "repBy", "newAdd", "lat", "lng", "dateRetrieved", "URL"]]
 	propertyList = list(header)
-	todaysdate = datetime.datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
 	errorCount = 0
 	i = 1
 	while (errorCount <= 100 and i <= maxQueries):
@@ -42,24 +41,24 @@ def getProperties(sleep = 0, maxQueries = 2001):
 		# https://ucpi.sco.ca.gov/ucp/PropertyDetails.aspx?propertyID=001331061
 		# 9 digit numbers, needs to be padded with 0s
 	
+		dt = datetime.datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
 		url = "https://ucpi.sco.ca.gov/ucp/PropertyDetails.aspx?propertyID=" + str(randID).zfill(9)
-		print(str(i) + ": Querying " + url)
+		print(str(i) + ": " + url)
 		try: 
 			property = processProperty(url)
 			errorCount = 0
 		except Exception:
-			print("Error processing " + str(url) + "!")
+			print("Property ID " + str(randID) + " not found.")
 			property = [randID, "", "", "", "", "", "", "", "", "", ""]
 			errorCount = errorCount + 1
 			pass
-		propertyList.append(property + [todaysdate] + [url])
+		propertyList.append(property + [dt] + [url])
 		time.sleep(sleep)
 		if i % 1000 == 0:
 			print("Writing CSV.")
-			outputCSV(propertyList,"properties_" + str(todaysdate))
+			outputCSV(propertyList,"properties_" + str(dt))
 			propertyList = list(header) # reset propertyList - remember, lists are mutable.
 		i = i + 1
-	print("Writing last CSV.")
 	
 def processProperty(requestURL):
 	response = urllib2.urlopen(requestURL) 
