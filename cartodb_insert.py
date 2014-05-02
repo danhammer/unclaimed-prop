@@ -50,22 +50,4 @@ def total_value():
 
     cash = sum([x['value'] for x in data['rows']])
     return '{:10,.2f}'.format(cash)
-    
 
-
-def plot_ids():
-    import matplotlib.pyplot as plt
-
-    x = processed_ids()
-    cash = total_value()
-    num_bins = 100
-    # the histogram of the data
-    n, bins, patches = plt.hist(x, num_bins, facecolor='green', alpha=0.5)
-    plt.xlabel('Property ID')
-    plt.ylabel('Frequency')
-    plt.title(r'Number of IDs: %s, Total value: \$%s' %(len(x), cash))
-
-
-    # Tweak spacing to prevent clipping of ylabel
-    plt.subplots_adjust(left=0.1)
-    plt.show()
